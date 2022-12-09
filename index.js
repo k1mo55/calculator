@@ -36,6 +36,10 @@ let result = null;
 function display() {
     const screen = document.getElementById('screen');
     screen.innerText = displayValue;
+    if(displayValue.length > 10) {
+        display.innerText = displayValue.substring(0, 9);
+    }
+    
     }
 display();
 
