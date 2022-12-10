@@ -37,7 +37,6 @@ function display() {
     const screen = document.getElementById('screen');
     screen.innerText = displayValue;  
     }
-display();
 
 buttons.forEach(function(i){
     i.addEventListener('click',function(){
