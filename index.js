@@ -1,4 +1,5 @@
 
+
 const add = (x,y)=>{
     return x+y 
 }
@@ -10,7 +11,7 @@ const multiply = (x,y)=>{
 }
 const divide = (x,y)=>{
    if(y==0)
-    return "nan"
+    return "infinity"
    else
     return x/y 
 }
@@ -25,6 +26,8 @@ const operate =(x,y,op)=>{
     else if(op=='/')
         return divide(x,y);       
 }
+
+
 const buttons = document.querySelectorAll('button');
 let displayValue = '0';
 let num1 = null;
@@ -35,7 +38,11 @@ let result = null;
 
 function display() {
     const screen = document.getElementById('screen');
-    screen.innerText = displayValue;  
+        let x=String(displayValue);
+        if(x.length>6){
+            screen.innerText = x.substring(0, 8);
+        }
+        else screen.innerText = displayValue;
     }
 
 buttons.forEach(function(i){
@@ -92,12 +99,12 @@ function inputnum (num){
 }
 
 function inputsign(sign){
-     if (sign1!=null && sign2===null)
+     if (sign1!=null && sign2===null && num1!= displayValue)
     {
         
         sign2=sign;
         num2=displayValue;
-        result=operate(parseFloat(num1), parseFloat(num2),sign1);
+        result=operate(parseFloat(num1),parseFloat(num2),sign1);
         displayValue=result;
         num1=displayValue;
         result=null;
@@ -112,6 +119,12 @@ function inputsign(sign){
                 num1=displayValue;
                 result=null;
         }
+        else if (sign1!=null){
+            sign1=sign;
+            console.log("change sign");
+
+        }
+
      else{
             sign1=sign;
             num1=displayValue;
@@ -175,5 +188,8 @@ function clear (){
     sign2 = null;
     result = null;
 }
+
+        
+
 
         
